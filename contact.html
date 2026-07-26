@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>お問い合わせ・ご要望 | ラインケアⅡ</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      line-height: 1.9;
+      color: #1c2b26;
+      background: #fbfdfc;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      border-bottom: 3px solid #145c4a;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin-top: 2em;
+      color: #145c4a;
+    }
+
+    a {
+      color: #145c4a;
+    }
+
+    p.lead {
+      color: #33453f;
+    }
+
+    form {
+      margin-top: 1.5em;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 1.4em;
+      margin-bottom: 0.4em;
+    }
+
+    label .opt {
+      font-weight: 400;
+      font-size: 0.82rem;
+      color: #6b7a76;
+      margin-left: 0.4em;
+    }
+
+    label .req {
+      font-weight: 400;
+      font-size: 0.82rem;
+      color: #b4511f;
+      margin-left: 0.4em;
+    }
+
+    select,
+    textarea,
+    input[type="email"] {
+      width: 100%;
+      box-sizing: border-box;
+      font: inherit;
+      color: inherit;
+      padding: 12px 14px;
+      border: 1px solid #c4d0cc;
+      border-radius: 12px;
+      background: #f7faf9;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    select:focus,
+    textarea:focus,
+    input:focus {
+      outline: 2px solid #145c4a;
+      border-color: #145c4a;
+    }
+
+    button {
+      margin-top: 1.8em;
+      width: 100%;
+      font: inherit;
+      font-weight: 700;
+      color: #fff;
+      background: #145c4a;
+      border: 0;
+      border-radius: 14px;
+      padding: 15px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    #status {
+      margin-top: 1.2em;
+      padding: 14px 16px;
+      border-radius: 12px;
+      display: none;
+    }
+
+    #status.ok {
+      display: block;
+      background: #e6f2ee;
+      color: #145c4a;
+    }
+
+    #status.err {
+      display: block;
+      background: #fbeae2;
+      color: #a5451b;
+    }
+
+    .privacy-note {
+      margin-top: 2em;
+      font-size: 0.85rem;
+      color: #6b7a76;
+    }
+
+    footer {
+      margin-top: 3em;
+      font-size: 0.85rem;
+      color: #6b7a76;
+      border-top: 1px solid #d8e0dd;
+      padding-top: 1em;
+    }
+
+    .hp {
+      position: absolute;
+      left: -9999px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #101614;
+        color: #e6ece9;
+      }
+
+      h1,
+      h2 {
+        color: #7fcbb4;
+      }
+
+      p.lead {
+        color: #b7c6c1;
+      }
+
+      select,
+      textarea,
+      input[type="email"] {
+        background: #16221e;
+        border-color: #2b3d37;
+      }
+
+      #status.ok {
+        background: #133329;
+        color: #8fd4bd;
+      }
+
+      #status.err {
+        background: #34211a;
+        color: #e6a889;
+      }
+
+      footer,
+      .privacy-note,
+      label .opt {
+        color: #83979090;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>お問い合わせ・ご要望</h1>
+  <p class="lead">「ラインケアⅡ」へのアプリ改善のご要望、不具合のご報告、使い方のご質問などを受け付けています。いただいた内容は今後の改善に活用します。</p>
+
+  <form id="contactForm" novalidate>
+    <!-- 特別フィールド（値は日本語でも正しく表示される）。name は subject / from_name の英語のまま。 -->
+    <input type="hidden" name="subject" value="ラインケアⅡ お問い合わせ">
+    <input type="hidden" name="from_name" value="ラインケアⅡ お問い合わせフォーム">
+
+    <!-- ★重要: name 属性は必ずASCII。日本語 name は Web3Forms 側でLatin-1誤デコードされラベルが文字化けする。
+       画面ラベル（<label> のテキスト）は日本語でOK。値（<option> やユーザー入力）も日本語でOK。 -->
+    <label for="kind">お問い合わせ種別<span class="req">必須</span></label>
+    <select id="kind" name="category" required>
+      <option value="">選択してください</option>
+      <option>アプリ改善のご要望</option>
+      <option>不具合のご報告</option>
+      <option>使い方のご質問</option>
+      <option>その他</option>
+    </select>
+
+    <label for="body">内容<span class="req">必須</span></label>
+    <textarea id="body" name="message" required placeholder="ご要望の内容、不具合が起きた操作や状況、ご質問などをご記入ください。"></textarea>
+
+    <label for="reply">ご返信先メールアドレス<span class="opt">任意（返信が必要な場合のみ）</span></label>
+    <!-- name は reply_email（"email" は Web3Forms の reply-to 特別扱い＋空値の挙動が不安定なため避ける） -->
+    <input type="email" id="reply" name="reply_email" placeholder="例: you@example.com" autocomplete="email">
+
+    <!-- スパム対策のハニーポット（人には見えない） -->
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <button type="submit" id="submitBtn">送信する</button>
+    <p id="status" role="status" aria-live="polite"></p>
+  </form>
+
+  <p class="privacy-note">送信された内容と、任意でご記入いただいたメールアドレスは、お問い合わせへの対応のためにのみ使用します。アクセス解析や広告の目的では利用しません。詳しくは<a
+      href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+
+  <h2>各種文書・情報</h2>
+  <p><a href="./index.html">サポート（よくある質問）</a> ／ <a href="./privacy.html">プライバシーポリシー</a></p>
+
+  <footer>
+    <p>© 2026 ラインケアⅡ 開発者</p>
+  </footer>
+
+  <script>
+    // ── ★ここだけ手で書き換える（公開前の必須作業）─────────────────────
+    // 下の行の {{WEB3FORMS_ACCESS_KEY}} を、取得した Web3Forms のアクセスキーに置き換える。
+    //   例: const ACCESS_KEY = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+    // キーは公開してよい識別子で、受信用メールアドレスはこのページには出ない。
+    // 置き換えるのは【この1行だけ】。下の準備中判定は触らなくてよい（自動で解除される）。
+    const ACCESS_KEY = "1ec89f3e-86a8-4f45-81ac-60bc57902585";
+    const ENDPOINT = "https://api.web3forms.com/submit";
+
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("status");
+    const btn = document.getElementById("submitBtn");
+    const show = (kind, msg) => { statusEl.className = kind; statusEl.textContent = msg; };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.className = ""; statusEl.textContent = "";
+      if (!form.reportValidity()) return;
+      // キー未設定（プレースホルダのまま）なら送信せず案内だけ出す。
+      // 判定はプレースホルダの形（{{ で始まる）で行うので、一括置換しても壊れない。
+      if (!ACCESS_KEY || ACCESS_KEY.startsWith("{{")) {
+        show("err", "お問い合わせフォームは現在準備中です。お手数ですが、時間をおいて再度お試しください。");
+        return;
+      }
+      btn.disabled = true; btn.textContent = "送信中…";
+      try {
+        const data = new FormData(form);
+        data.append("access_key", ACCESS_KEY);
+        const res = await fetch(ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: data });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          form.reset();
+          show("ok", "送信しました。ありがとうございます。返信先をご記入いただいた場合は、通常2〜3営業日以内にご連絡します。");
+          btn.textContent = "送信しました";
+        } else {
+          show("err", "送信に失敗しました。通信環境をご確認のうえ、もう一度お試しください。");
+          btn.disabled = false; btn.textContent = "送信する";
+        }
+      } catch (_) {
+        show("err", "送信に失敗しました。通信環境をご確認のうえ、もう一度お試しください。");
+        btn.disabled = false; btn.textContent = "送信する";
+      }
+    });
+  </script>
+</body>
+
+</html>
